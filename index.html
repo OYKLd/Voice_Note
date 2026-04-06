@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionnaire de Notes Vocales</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Notes Vocales</h1>
+            <p>Enregistrez, écoutez et gérez vos notes vocales</p>
+        </header>
+
+        <main>
+            <!-- Section d'enregistrement -->
+            <section class="recording-section">
+                <div class="recording-controls">
+                    <button id="recordBtn" class="record-btn">
+                        <span class="record-text">Commencer l'enregistrement</span>
+                    </button>
+                    
+                    <div id="recordingStatus" class="recording-status hidden">
+                        <div class="recording-indicator"></div>
+                        <span id="recordingTime">00:00</span>
+                    </div>
+                </div>
+
+                <div id="audioNameSection" class="audio-name-section hidden">
+                    <input type="text" id="audioNameInput" placeholder="Nommez votre enregistrement..." maxlength="50">
+                    <button id="saveNameBtn">Sauvegarder</button>
+                </div>
+            </section>
+
+            <!-- Liste des enregistrements -->
+            <section class="recordings-section">
+                <h2>Mes Enregistrements</h2>
+                <div id="recordingsList" class="recordings-list">
+                    <p class="empty-state">Aucun enregistrement pour le moment</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Sauvegardé localement dans votre navigateur</p>
+        </footer>
+    </div>
+
+    <!-- Modal pour lecture audio -->
+    <div id="audioModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modalTitle">Lecture audio</h3>
+            <audio id="audioPlayer" controls></audio>
+            <div class="modal-actions">
+                <button id="downloadBtn" class="download-btn">Télécharger</button>
+                <button id="deleteBtn" class="delete-btn">Supprimer</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="style.js"></script>
+</body>
+</html>
