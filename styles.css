@@ -1,0 +1,598 @@
+/* Reset et base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: linear-gradient(180deg, #f4e8d0 0%, #e8d4b0 50%, #dcc0a0 100%);
+    min-height: 100vh;
+    color: #3a2f1f;
+    line-height: 1.6;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(139, 90, 43, 0.03) 2px,
+            rgba(139, 90, 43, 0.03) 4px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(139, 90, 43, 0.03) 2px,
+            rgba(139, 90, 43, 0.03) 4px
+        );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #5d4037;
+    position: relative;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #8b5a3c, transparent);
+    border-radius: 2px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(93, 64, 55, 0.3);
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+/* Main */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Section d'enregistrement */
+.recording-section {
+    background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 
+        0 4px 6px rgba(93, 64, 55, 0.1),
+        0 1px 3px rgba(93, 64, 55, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    text-align: center;
+    border: 1px solid rgba(139, 90, 43, 0.1);
+    position: relative;
+}
+
+.recording-section::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #d4a574, #8b5a3c, #d4a574);
+    border-radius: 15px;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.recording-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.record-btn {
+    background: linear-gradient(135deg, #d32f2f, #b71c1c);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 6px 12px rgba(211, 47, 47, 0.3),
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.record-btn::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    right: 10%;
+    bottom: 10%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.record-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 8px 16px rgba(211, 47, 47, 0.4),
+        0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.record-btn.recording {
+    background: linear-gradient(135deg, #c62828, #8b0000);
+    animation: recordPulse 2s infinite;
+}
+
+@keyframes recordPulse {
+    0% { 
+        transform: scale(1);
+        box-shadow: 0 6px 12px rgba(211, 47, 47, 0.3);
+    }
+    50% { 
+        transform: scale(1.08);
+        box-shadow: 0 8px 20px rgba(211, 47, 47, 0.5);
+    }
+    100% { 
+        transform: scale(1);
+        box-shadow: 0 6px 12px rgba(211, 47, 47, 0.3);
+    }
+}
+
+.record-icon {
+    font-size: 2.5rem;
+}
+
+.record-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.recording-status {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #c62828;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+}
+
+.recording-indicator {
+    width: 14px;
+    height: 14px;
+    background: radial-gradient(circle, #ff4444, #cc0000);
+    border-radius: 50%;
+    animation: recordBlink 1.2s infinite;
+    box-shadow: 0 0 8px rgba(255, 68, 68, 0.6);
+}
+
+@keyframes recordBlink {
+    0%, 45% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.6;
+        transform: scale(0.9);
+    }
+    55%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.audio-name-section {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.audio-name-section input {
+    padding: 14px 18px;
+    border: 2px solid rgba(139, 90, 43, 0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    flex: 1;
+    max-width: 300px;
+    background: rgba(255, 255, 255, 0.8);
+    font-family: 'Georgia', serif;
+    color: #3a2f1f;
+}
+
+.audio-name-section input::placeholder {
+    color: rgba(93, 64, 55, 0.5);
+    font-style: italic;
+}
+
+.audio-name-section input:focus {
+    border-color: #8b5a3c;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(139, 90, 43, 0.1);
+}
+
+.audio-name-section button {
+    background: linear-gradient(135deg, #8b5a3c, #6d4226);
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(139, 90, 43, 0.3);
+    font-family: 'Georgia', serif;
+}
+
+.audio-name-section button:hover {
+    background: linear-gradient(135deg, #6d4226, #5a3420);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(139, 90, 43, 0.4);
+}
+
+/* Section des enregistrements */
+.recordings-section {
+    background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 
+        0 4px 6px rgba(93, 64, 55, 0.1),
+        0 1px 3px rgba(93, 64, 55, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(139, 90, 43, 0.1);
+    position: relative;
+}
+
+.recordings-section::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #d4a574, #8b5a3c, #d4a574);
+    border-radius: 15px;
+    z-index: -1;
+    opacity: 0.2;
+}
+
+.recordings-section h2 {
+    margin-bottom: 25px;
+    color: #5d4037;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.recordings-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #8b5a3c, transparent);
+}
+
+.recordings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.recording-item {
+    background: linear-gradient(135deg, #f9f6f2 0%, #f5f0e8 100%);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(139, 90, 43, 0.1);
+    position: relative;
+}
+
+.recording-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #d4a574, #8b5a3c);
+    border-radius: 10px 0 0 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.recording-item:hover {
+    background: linear-gradient(135deg, #f5f0e8 0%, #f0e8dc 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(93, 64, 55, 0.15);
+}
+
+.recording-item:hover::before {
+    opacity: 1;
+}
+
+.recording-info {
+    flex: 1;
+}
+
+.recording-name {
+    font-weight: 600;
+    color: #3a2f1f;
+    margin-bottom: 5px;
+    font-family: 'Georgia', serif;
+}
+
+.recording-meta {
+    font-size: 0.9rem;
+    color: #6d5d4d;
+    font-style: italic;
+}
+
+.recording-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.play-btn, .download-btn-small {
+    background: linear-gradient(135deg, #8b5a3c, #6d4226);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(139, 90, 43, 0.3);
+    font-family: 'Georgia', serif;
+}
+
+.play-btn:hover, .download-btn-small:hover {
+    background: linear-gradient(135deg, #6d4226, #5a3420);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(139, 90, 43, 0.4);
+}
+
+.delete-btn-small {
+    background: linear-gradient(135deg, #c62828, #8b0000);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(198, 40, 40, 0.3);
+    font-family: 'Georgia', serif;
+}
+
+.delete-btn-small:hover {
+    background: linear-gradient(135deg, #8b0000, #660000);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(198, 40, 40, 0.4);
+}
+
+.empty-state {
+    text-align: center;
+    color: #8b7355;
+    font-style: italic;
+    padding: 40px 20px;
+    font-family: 'Georgia', serif;
+    font-size: 1.1rem;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 
+        0 20px 40px rgba(93, 64, 55, 0.2),
+        0 8px 16px rgba(93, 64, 55, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(139, 90, 43, 0.2);
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 28px;
+    font-weight: 300;
+    cursor: pointer;
+    color: #8b7355;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif;
+}
+
+.close:hover {
+    color: #5d4037;
+    transform: rotate(90deg);
+}
+
+.modal-content h3 {
+    margin-bottom: 20px;
+    color: #5d4037;
+    font-weight: 400;
+    text-align: center;
+    font-family: 'Georgia', serif;
+}
+
+#audioPlayer {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.download-btn {
+    background: linear-gradient(135deg, #4caf50, #388e3c);
+    color: white;
+    box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
+    font-family: 'Georgia', serif;
+}
+
+.download-btn:hover {
+    background: linear-gradient(135deg, #388e3c, #2e7d32);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.4);
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #f44336, #d32f2f);
+    color: white;
+    box-shadow: 0 2px 4px rgba(244, 67, 54, 0.3);
+    font-family: 'Georgia', serif;
+}
+
+.delete-btn:hover {
+    background: linear-gradient(135deg, #d32f2f, #c62828);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(244, 67, 54, 0.4);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #8b7355;
+    font-style: italic;
+    font-size: 0.9rem;
+    font-family: 'Georgia', serif;
+}
+
+/* Utilitaires */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .recording-section, .recordings-section {
+        padding: 20px;
+    }
+    
+    .record-btn {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .recording-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .recording-info {
+        flex: 1;
+        text-align: left;
+    }
+    
+    .recording-actions {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .modal-content {
+        padding: 20px;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .download-btn, .delete-btn {
+        max-width: none;
+    }
+}
